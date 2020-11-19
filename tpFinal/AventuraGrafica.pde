@@ -1,9 +1,12 @@
 class AventuraGrafica {
+
   MiniGame miniGame;
   Fondos fondos;
+  Resizable r;
   PFont fuente;
   boolean perdio, gano, basura, ignora, ruido, despierta, feliz, triste, puerta, salir, finalbasurero, comenzar;
   String estado;
+
 
 
   boolean botones (float px1, float px2, float py1, float py2) { //FUNCION PARA VERIFICAR SI SE CLICKEO EN LA ZONA DEL BOTÓN
@@ -20,8 +23,11 @@ class AventuraGrafica {
   }
 
   void dibujar_juego() {
-    println(valorX(110));
-    fondos.image_resizable(valorX(800), valorY(600));
+
+    println(mouseX);
+    println(mouseY);
+    println(estado);
+
     if (estado.equals("inicio" )) { 
       fondos.escena_inicio();
     }
@@ -79,29 +85,29 @@ class AventuraGrafica {
       miniGame.inicializarVariables();
       miniGame.dibujarMenu(); // DIBUJAR MENU CON EXPLICACION
       if (mousePressed) {
-        if (botones(320, 485, 388, 488)) { // VERIFICAR SI SE CLICKEO EL BOTÓN DE COMENZAR
+        if (botones(r.valorX(320), r.valorX(485), r.valorY(388), r.valorY(488))) { // VERIFICAR SI SE CLICKEO EL BOTÓN DE COMENZAR
           estado= "juego";
         }
       }
     }
 
-    if (estado.equals("juego")) {
+    if (estado.equals("juego")) {  //COMIENZA MINIJUEGO
       perdio=true;
       miniGame.dibujarJuego();
     }
 
-    if (miniGame.perderJuego()) {
+    if (miniGame.perderJuego()) { // PERDER MINIJUEGO
       if (perdio) {
         miniGame.pantallaPerder();
         estado= "perder";
       }
       if (mousePressed) {
-        if (botones(valorX(420), valorY(580), valorX(380), valorY(440)) ) { // VERIFICAR SI SE CLICKEO EL BOTÓN DE VOLVER A JUGAR
-          miniGame.obstaculos.inicializarVar();
+        if (botones(r.valorX(420), r.valorX(580), r.valorY(6380), r.valorY(440)) ) { // VERIFICAR SI SE CLICKEO EL BOTÓN DE VOLVER A JUGAR
+          miniGame.obstaculos.inicializarVar(); // SE INICIALIZAN LAS VARIABLES DEL MINIJUEGO
           estado= "main";
           perdio=false;
         }
-        if (botones(valorX(230), valorY(400), valorX(380), valorY(440))) { // VERIFICAR SI SE CLICKEO EL BOTÓN DE SALIR
+        if (botones(r.valorX(230), r.valorX(380), r.valorY(400), r.valorY(440))) { // VERIFICAR SI SE CLICKEO EL BOTÓN DE SALIR
           estado= "basurero";
           perdio=false;
         }
@@ -109,17 +115,18 @@ class AventuraGrafica {
     }
 
 
-    if (miniGame.ganarJuego()|| estado.equals("ganar")) {
+    if (miniGame.ganarJuego()|| estado.equals("ganar")) { // GANAR MINIJUEGO
       if (gano) {
         estado= "ganar";
         miniGame.pantallaGanar();
       }
       if (mousePressed) {
-        if (botones(valorX(420), valorY(580), valorX(380), valorY(440))) { // VERIFICAR SI SE CLICKEO EL BOTÓN DE VOLVER A JUGAR
+        if (botones(r.valorX(420), r.valorX(580), r.valorY(380), r.valorY(440))) { // VERIFICAR SI SE CLICKEO EL BOTÓN DE VOLVER A JUGAR
+          miniGame.obstaculos.inicializarVar(); // SE INICIALIZAN LAS VARIABLES DEL MINIJUEGO
           estado= "main";
           gano=false;
         }
-        if (botones(valorX(230), valorY(400), valorX(380), valorY(440))) { // VERIFICAR SI SE CLICKEO EL BOTÓN DE SALIR
+        if (botones(r.valorX(230), r.valorY(400), r.valorX(380), r.valorY(440))) { // VERIFICAR SI SE CLICKEO EL BOTÓN DE SALIR
           estado= "basurero";
           gano=false;
         }
@@ -129,93 +136,89 @@ class AventuraGrafica {
   void cambiarEscena () {
 
     if (estado.equals("quehacer1")) {
-      if (botones(valorX(110), valorX(460), valorY(310), valorY(570))) {
+      if (botones(r.valorX(110), r.valorX(310), r.valorY(470), r.valorY(570))) {
         estado="humanoignora";
       } 
-      if (botones(valorX(500), valorX(460), valorY(700), valorY(570))) {
+      if (botones(r.valorX(500), r.valorX(700), r.valorY(470), r.valorY(570))) {
         estado="salirabuscarcomida";
       }
     }
 
     if (estado.equals("basurero") && basura==true) {
-      if (botones(valorX(100), valorX(470), valorY(290), valorY(570))) {
+      if (botones(r.valorX(100), r.valorX(290), r.valorY(470), r.valorY(570))) {
         estado="humanoignora";
       }
-      if (botones(valorX(500), valorX(460), valorY(700), valorY(570))) {
+      if (botones(r.valorX(500), r.valorX(700), r.valorY(470), r.valorY(570))) {
 
         estado="main";
       }
     }
 
     if (estado.equals("finalfeliz") && feliz==true) {
-      if (botones(valorX(40), valorX(440), valorY(200), valorY(530))) {
+      if (botones(r.valorX(45), r.valorX(200), r.valorY(440), r.valorY(530))) {
         inicializarvariables();
       }
-      if (botones(valorX(320), valorX(440), valorY(480), valorY(533))) {
-        estado="creditos";
-      }
-    }
-
-    if (estado.equals("finalfelizbasurero") && finalbasurero==true) {
-      if (botones(valorX(50), valorX(430), valorY(210), valorY(520))) {
-        inicializarvariables();
-      }
-      if (botones(valorX(300), valorX(430), valorY(465), valorY(520))) {
+      if (botones(r.valorX(320), r.valorX(480), r.valorY(440), r.valorY(530))) {
         estado="creditos";
       }
     }
 
     if (estado.equals("finaltriste") && triste==true) {
-      if (botones(valorX(60), valorX(430), valorY(220), valorY(520))) {
+      if (botones(r.valorX(60), r.valorX(220), r.valorY(440), r.valorY(530))) {
         inicializarvariables();
       }
-      if (botones(valorX(310), valorX(430), valorY(480), valorY(520))) {
+      if (botones(r.valorX(310), r.valorX(475), r.valorY(440), r.valorY(530))) {
         estado="creditos";
       }
     }
 
     if (estado.equals("hacerruido") && ruido==true) {
-      if (botones(valorX(160), valorX(460), valorY(700), valorY(570))) {
+      if (botones(r.valorX(160), r.valorX(390), r.valorY(440), r.valorY(540))) {
         estado="humanodespierta";
       }
-      if (botones(valorX(440), valorX(430), valorY(670), valorY(540))) {
+      if (botones(r.valorX(490), r.valorX(690), r.valorY(440), r.valorY(540))) {
         estado="humanodespierta";
       }
     }
 
     if (estado.equals("humanodespierta") && despierta==true) {
-      if (botones(valorX(100), valorX(470), valorY(290), valorY(570))) {
+      if (botones(r.valorX(100), r.valorX(290), r.valorY(470), r.valorY(570))) {
         estado="finalfeliz";
       }
-      if (botones(valorX(510), valorX(470), valorY(690), valorY(570))) {
+      if (botones(r.valorX(510), r.valorX(690), r.valorY(470), r.valorY(570))) {
         estado="finaltriste";
       }
     }
 
     if (estado.equals("humanoignora") && ignora==true) {
-      if (botones(valorX(100), valorX(290), valorY(470), valorY(570))) {
+      if (botones(r.valorX(100), r.valorX(290), r.valorY(470), r.valorY(570))) {
         estado="hacerruido";
       }
-      if (botones(valorX(510), valorX(690), valorY(470), valorY(570))) {
+      if (botones(r.valorX(510), r.valorX(690), r.valorY(470), r.valorY(570))) {
         estado="salirabuscarcomida";
       }
     }
 
     if (estado.equals("puertacerrada") && puerta==true) {
-      if (botones(valorX(100), valorX(290), valorY(470), valorY(550))) {
+      if (botones(r.valorX(100), r.valorX(290), r.valorY(470), r.valorY(550))) {
         estado="humanoignora";
       }
-      if (botones(valorX(510), valorX(690), valorY(470), valorY(550))) {
+      if (botones(r.valorX(510), r.valorX(690), r.valorY(470), r.valorY(550))) {
         estado="salirabuscarcomida";
       }
     }
 
     if (estado.equals("salirabuscarcomida") && salir ==true) {
-      if (botones(valorX(200), valorX(350), valorY(480), valorY(560))) {
+      if (botones(r.valorX(200), r.valorX(350), r.valorY(480), r.valorY(560))) {
         estado="puertacerrada";
       }
-      if (botones(valorX(440), valorX(600), valorY(480), valorY(560))) {
+      if (botones(r.valorX(440), r.valorX(600), r.valorY(480), r.valorY(560))) {
         estado="basurero";
+      }
+    }
+    if (estado.equals("creditos") ) {
+      if (botones(r.valorX(200), r.valorX(520), r.valorY(520), r.valorY(550))) {
+        inicializarvariables();
       }
     }
   }
@@ -236,13 +239,6 @@ class AventuraGrafica {
     perdio=true;
     gano=true;
     miniGame = new MiniGame();
-  }
-
-  float valorX (float valor) {
-    return map(valor, 0, 800, 0, width);
-  }
-
-  float valorY  (float valor) {
-    return map(valor, 0, 600, 0, height);
+    r = new Resizable ();
   }
 }

@@ -1,14 +1,16 @@
 class Gato {
   PImage gato;
-  int tam;
+  float tam;
   float px, py, vx, vy, ax, ay;
   boolean jump=false;
+  Resizable r;
 
   Gato() {
+    r= new Resizable ();
     gato= loadImage("gato.png");
     tam=250;
     px= 100;
-    py= 160;
+    py=160;
     ax = 0; //VARIABLES PARA CONTROLAR EL SALTO DEL GATO
     ay = .32;
     vx = 0;
@@ -21,12 +23,12 @@ class Gato {
     px+=vx;
     py+=vy;
 
-    if ( py > 180 ) {
-      py =180;
-      vy = 0;
+    if ( py > r.valorY(180) ) {
+      py =r.valorY(180);
+      vy = r.valorY(0);
       jump = true;
     } 
-    image(gato, px, py, tam,tam+50);
+    image(gato, r.valorX(px), r.valorY(py), r.valorX(tam),r.valorX(tam+50));
   }
 
   void moverArriba() {
