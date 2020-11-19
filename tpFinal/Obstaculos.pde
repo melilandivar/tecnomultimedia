@@ -16,7 +16,7 @@ class Obstaculos {
 
   void avanzarObstaculos() {
     if (ox<0) {
-      ox=r.valorX(800);
+      ox=800;
     }
     ox-=10;
   }

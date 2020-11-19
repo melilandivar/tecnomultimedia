@@ -6,6 +6,7 @@ class AventuraGrafica {
   PFont fuente;
   boolean perdio, gano, basura, ignora, ruido, despierta, feliz, triste, puerta, salir, finalbasurero, comenzar;
   String estado;
+  float px, py;
 
 
 
@@ -22,12 +23,9 @@ class AventuraGrafica {
     inicializarvariables();
   }
 
-  void dibujar_juego() {
-
-    println(mouseX);
-    println(mouseY);
-    println(estado);
-
+  void dibujar_juego() { // VOID PARA DIBUJAR Y CAMBIAR ESCENAS DEL JUEGO
+println(mouseX);
+println(mouseY);
     if (estado.equals("inicio" )) { 
       fondos.escena_inicio();
     }
@@ -80,7 +78,7 @@ class AventuraGrafica {
       fondos.escena_creditos();
     }
 
-    if (estado.equals("main")) {
+    if (estado.equals("main")) { // INICIO MINIJUEGO
       perdio=true;
       miniGame.inicializarVariables();
       miniGame.dibujarMenu(); // DIBUJAR MENU CON EXPLICACION
@@ -102,13 +100,13 @@ class AventuraGrafica {
         estado= "perder";
       }
       if (mousePressed) {
-        if (botones(r.valorX(420), r.valorX(580), r.valorY(6380), r.valorY(440)) ) { // VERIFICAR SI SE CLICKEO EL BOTÓN DE VOLVER A JUGAR
+        if (botones(r.valorX(420), r.valorX(580), r.valorY(380), r.valorY(440)) ) { // VERIFICAR SI SE CLICKEO EL BOTÓN DE VOLVER A JUGAR
           miniGame.obstaculos.inicializarVar(); // SE INICIALIZAN LAS VARIABLES DEL MINIJUEGO
           estado= "main";
           perdio=false;
         }
         if (botones(r.valorX(230), r.valorX(380), r.valorY(400), r.valorY(440))) { // VERIFICAR SI SE CLICKEO EL BOTÓN DE SALIR
-          estado= "basurero";
+          estado= "basurero"; //VUELVE A LA PANTALLA ANTERIOR
           perdio=false;
         }
       }
@@ -127,13 +125,13 @@ class AventuraGrafica {
           gano=false;
         }
         if (botones(r.valorX(230), r.valorY(400), r.valorX(380), r.valorY(440))) { // VERIFICAR SI SE CLICKEO EL BOTÓN DE SALIR
-          estado= "basurero";
+          estado= "basurero"; //VUELVE A LA PANTALLA ANTERIOR
           gano=false;
         }
       }
     }
   }
-  void cambiarEscena () {
+  void cambiarEscena () { // VOID PARA VERIFICAR SI SE CLICKEO CON LA FUNCION DE BOTONES Y CAMBIAR EL VALOR DE LA VARIABLE ESTADO
 
     if (estado.equals("quehacer1")) {
       if (botones(r.valorX(110), r.valorX(310), r.valorY(470), r.valorY(570))) {
@@ -222,7 +220,7 @@ class AventuraGrafica {
       }
     }
   }
-  void inicializarvariables() {
+  void inicializarvariables() { //VOID PARA INICIALIZAR LAS VARIABLES EN CASO DE VOLVER A JUGAR
 
 
     fuente= createFont("Rockwell-48.vlw", 60);

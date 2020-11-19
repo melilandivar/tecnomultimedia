@@ -1,4 +1,4 @@
-class Resizable { 
+class Resizable { // CLASE PARA CALCULAR LOS VALORES AL MODIFICAR LA VENTANA
   float px, py;
 
   float valorX (float valor) {
