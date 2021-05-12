@@ -1,4 +1,5 @@
 
+
 //declaro un objeto
 Dir_y_Vel dir;
 Cadena estaCadena;
@@ -15,6 +16,7 @@ Paleta pf; //FONDO
 float esteRadio = 200;
 float mouseSpeed;
 int cant=0;
+
 void setup() {
 
   size( 500, 600 );
@@ -43,14 +45,17 @@ void setup() {
 
   //----------------------------
   strokeWeight(7);
-  stroke(c.darFrio());
+  stroke(c.cambiarColor());
 
   hacerCirculoBezier( esteRadio );
 }
 
 void draw() {
+  
   println("cant: " + cant);
+  
   esteRadio=random(100, 300);
+  
   if (( !caminante.activo )&& (cant<5)) { //si se termino una figura
     esteRadio =random(100,300); //aumenta el radio de la proxima figura
     hacerCirculoBezier( esteRadio ); //hace nueva figura con nuevo radio
@@ -59,7 +64,7 @@ void draw() {
     cant++;
   }
 
-
+println("velocidad: " + g.mouse.velocidad());
   caminante.dibujar();
   caminante.avanzar();
   g.actualizar();
@@ -76,27 +81,21 @@ void draw() {
 void hacerCirculoBezier( float radioCirculo ) { 
   //inicializar el objeto
   estaCadena = new Cadena();
-  for ( int i=0; i<8; i++ ) {
+  for ( int i=0; i<10; i++ ) { //la figura tiene 10 curvas
     float radio = radioCirculo;
     //definir angulo de un giro completo
-    float angulo = map( i, 0, 7, 0, radians(360) );
+    float angulo = map( i, 0, 9, 0, radians(360) ); //la var i va de 0 a 9 (cada curva) tomando valores en un angulo de 360 grados
     println(angulo);
-    float x = width/2 + radio * cos(angulo);
-    float y = height/2 + radio * sin(angulo);
-    /*  if (x + radio > 500 || x + radio < 0) {  INTENTO FALLIDO DE QUE REBOTE EN LOS COSTADOS F
-     x = random(100, 400) + radio * cos( angulo );
-     }
-     if ((y + radio > 600 || y + radio < 0)) {
-     y = random(100, 500) + radio * sin( angulo );*/
-    //    println("x: " + x);
-    //  println("y: " + y);  
-    estaCadena.click( x, y );
+    float x = width/2 + radio * cos(angulo); //el width/2 hace que la figura se cierre
+    float y = height/2 + radio * sin(angulo); //el height/2 hace que la figura se cierre
+
+    estaCadena.click( x, y ); //añade la curva bezier a la figura
   }
-  Curva ultimo = estaCadena.lista.get( estaCadena.lista.size()-1 );
-  Curva primero = estaCadena.lista.get(0);
+  Curva ultimo = estaCadena.lista.get( estaCadena.lista.size()-1 ); //toma la ultima curva
+  Curva primero = estaCadena.lista.get(0); 
 
-  ultimo.setAngulo2( primero.angulo1+PI );
+  ultimo.setAngulo2( primero.angulo1+PI ); //para que la nueva curva sea organica con el punto anterior
 
-  caminante = new CaminanteBezier( estaCadena );
+  caminante = new CaminanteBezier( estaCadena );//nueva curva
 }
 
