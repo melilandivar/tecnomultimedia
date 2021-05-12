@@ -9,17 +9,22 @@ class CaminanteBezier {
   float antesY = -1;
   //colores
   color c;
+  PGraphics w;   // caminantes
+  PImage cw;     // textura caminantes
+  Paleta p;
+  int colorr;
 
   boolean activo = true;
   //------------------------------------
 
   CaminanteBezier( Cadena cadena_ ) {
     cadena = cadena_;
+    cw = loadImage("textura_linea.png");
+    w = createGraphics(500, 600);
+    colorr = c;
   }
   //------------------------------------
-  void asignarColor( color nuevoColor ) {
-    c = nuevoColor;
-  }
+
 
   void avanzar() {
     paso++;
@@ -43,7 +48,17 @@ class CaminanteBezier {
       float esteY = bezierPoint(c.y1, c.y2, c.y3, c.y4, pos);
       //para que no arranque en cualquier lado
       if ( antesX!=-1 ) {
-        line( antesX, antesY, esteX, esteY );
+        w.beginDraw();
+        w.pushStyle();
+        w.noStroke();
+        w.fill(colorr);
+        w.ellipse ( antesX, antesY, esteX, esteY );
+        w.popStyle();
+        w.endDraw();
+        cw.mask(w);
+
+        image(cw, 0, 0);
+        image(w, 0, 0);
       }
 
       antesX = esteX;
@@ -53,4 +68,7 @@ class CaminanteBezier {
     }
   }
   //------------------------------------
+  void asignarColor( color nuevoColor ) {
+    colorr = nuevoColor;
+  }
 }
