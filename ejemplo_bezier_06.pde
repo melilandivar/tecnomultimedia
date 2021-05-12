@@ -1,4 +1,3 @@
-
 //declaro un objeto
 Dir_y_Vel dir;
 Cadena estaCadena;
@@ -81,8 +80,8 @@ void hacerCirculoBezier( float radioCirculo ) {
     //definir angulo de un giro completo
     float angulo = map( i, 0, 7, 0, radians(360) );
     println(angulo);
-    float x = random(100, 400) + radio * cos( angulo );
-    float y = random(100, 500) + radio * sin( angulo );
+    float x = width/2 + radio * cos(angulo);
+    float y = height/2 + radio * sin(angulo);
     /*  if (x + radio > 500 || x + radio < 0) {  INTENTO FALLIDO DE QUE REBOTE EN LOS COSTADOS F
      x = random(100, 400) + radio * cos( angulo );
      }
