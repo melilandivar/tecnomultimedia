@@ -1,3 +1,4 @@
+
 //declaro un objeto
 Dir_y_Vel dir;
 Cadena estaCadena;
@@ -11,7 +12,7 @@ Paleta  f; //COLORES FRIOS
 Paleta c; //COLORES CALIDOS
 Paleta pf; //FONDO
 //--------------------------
-float esteRadio = 100;
+float esteRadio = 200;
 float mouseSpeed;
 int cant=0;
 void setup() {
@@ -49,9 +50,9 @@ void setup() {
 
 void draw() {
   println("cant: " + cant);
-  esteRadio=random(100, 360);
+  esteRadio=random(100, 300);
   if (( !caminante.activo )&& (cant<5)) { //si se termino una figura
-    esteRadio =random(100, 300); //aumenta el radio de la proxima figura
+    esteRadio =random(100,300); //aumenta el radio de la proxima figura
     hacerCirculoBezier( esteRadio ); //hace nueva figura con nuevo radio
     strokeWeight(7);
     stroke(c.darCalido());
@@ -98,3 +99,4 @@ void hacerCirculoBezier( float radioCirculo ) {
 
   caminante = new CaminanteBezier( estaCadena );
 }
+
