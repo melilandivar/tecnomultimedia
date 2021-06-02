@@ -42,7 +42,6 @@ class Cadena {
     lista.add( curva );
     curva = new Curva( 240, 220, 57, 220, 120, 238, 100, 120);
     lista.add( curva );
-
   }
   void click2 () {
     //---------------------------- SEGUNDA FIGURA
@@ -69,6 +68,26 @@ class Cadena {
     curva = new Curva( 201, 8, 222, 1, 213, 83, 270, 70);
     lista.add( curva );
     curva = new Curva( 270, 70, 356, 39, 309, 160, 375, 75);
+    lista.add( curva );
+  }
+  //figura 3
+  void click3 () {
+    //---------------------------- SEGUNDA FIGURA
+    Curva curva = new Curva(352, 33, 411, 23, 490, 9, 380, 386);
+    lista.add( curva );   
+    curva = new Curva(380, 386, 279, 582, 467, 383, 359, 565);
+    lista.add( curva );
+    curva = new Curva(359, 565, 336, 598, 256, 596, 179, 476);
+    lista.add( curva );
+    curva = new Curva(179, 476, 111, 391, 10, 433, 54, 382);
+    lista.add( curva );
+    curva = new Curva( 54, 382, 105, 347, 351, 423, 339, 315);
+    lista.add( curva );
+    curva = new Curva( 339, 315, 302, 134, 248, 214, 169, 200);
+    lista.add( curva );
+    curva = new Curva( 169, 200, 28, 168, 25, 129, 109, 26);
+    lista.add( curva );
+    curva = new Curva(109,26, 146,1, 251,46, 352,33);
     lista.add( curva );
   }
 }

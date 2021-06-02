@@ -1,7 +1,7 @@
 Figura f;
-Cadena cadena, cadena2; //dos cadenas, 1 por caminante
-Caminante caminante, caminante2; //dos caminantes, uno por bezier
-boolean b2; //boolean para controlar la segunda figura
+Cadena cadena, cadena2, cadena3; //dos cadenas, 1 por caminante
+Caminante caminante, caminante2, caminante3; //dos caminantes, uno por bezier
+boolean b2,b3; //boolean para controlar la segunda figura
 void setup () {
   size(500, 600);
 
@@ -17,9 +17,17 @@ void draw () {
     if (b2==false) {
       hacerBezier2();
       b2=true;
-    } 
+    }  
     caminante2.dibujar();
     caminante2.avanzar();
+  }
+  if (frameCount>250) {
+    if (b3==false) {
+      hacerBezier3();
+      b3=true;
+    }  
+    caminante3.dibujar();
+    caminante3.avanzar();
   }
 }
 void mousePressed () {
@@ -35,4 +43,9 @@ void hacerBezier2() { //hace el segundo
   cadena2 = new Cadena();
   cadena2.click2();
   caminante2 = new Caminante (cadena2);
+}
+void hacerBezier3() { //hace el segundo
+  cadena3 = new Cadena();
+  cadena2.click3();
+  caminante3 = new Caminante (cadena3);
 }
