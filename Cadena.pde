@@ -87,7 +87,37 @@ class Cadena {
     lista.add( curva );
     curva = new Curva( 169, 200, 28, 168, 25, 129, 109, 26);
     lista.add( curva );
-    curva = new Curva(109,26, 146,1, 251,46, 352,33);
+    curva = new Curva(109, 26, 146, 1, 251, 46, 352, 33);
+    lista.add( curva );
+  }
+  //figura 4
+  void click4 () {
+    //---------------------------- TERCERA FIGURA
+    Curva curva = new Curva(143, 72, 222, -10, 246, 39, 294, 30);
+    lista.add( curva );   
+    curva = new Curva(294, 30, 428, 12, 403, 60, 440, 80);
+    lista.add( curva );
+    curva = new Curva(440, 80, 489, 108, 425, 120, 452, 223);
+    lista.add( curva );
+    curva = new Curva(452, 223, 444, 205, 357, 212, 382, 252);
+    lista.add( curva );
+    curva = new Curva( 382, 252, 411, 304, 520, 312, 462, 384);
+    lista.add( curva );
+    curva = new Curva(462, 384, 434, 420, 306, 297, 152, 406);
+    lista.add( curva );
+    curva = new Curva( 152, 406, 123, 428, 66, 428, 89, 510);
+    lista.add( curva );
+    curva = new Curva(89, 510, 119, 588, 153, 539, 173, 597);
+    lista.add( curva );
+    curva = new Curva(173, 597, 174, 608, 123, 575, 51, 596);
+    lista.add( curva );
+    curva = new Curva(51, 596, 17, 596, 11, 597, 60, 545);
+    lista.add( curva );
+    curva = new Curva(60, 545, 92, 509, 53, 494, 36, 473);
+    lista.add( curva );
+    curva = new Curva(36, 473, 21, 448, 16, 396, 51, 363);
+    lista.add( curva );
+    curva = new Curva(51,363, 204,217, 111,110, 143,72);
     lista.add( curva );
   }
 }

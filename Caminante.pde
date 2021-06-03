@@ -2,6 +2,7 @@ class Caminante {
 
   //-------------------------
   Cadena cadena;
+  Paleta p;
 
   int cantidadPasos = 100; //velocidad
   int paso = 0; //por que curva voy
@@ -26,11 +27,11 @@ class Caminante {
 
 
   Caminante( Cadena cadena_ ) {
-    //  p= new Paleta("fondo_1.png");
+    p= new Paleta("fondo_1.png");
     cadena = cadena_;
-    //  cw = loadImage("textura_linea.png");
-    //  w = createGraphics(500, 600);
-    //   col= p.darUnColor();
+    cw = loadImage("textura_linea.png");
+    w = createGraphics(500, 600);
+    col= p.darCalido();
     vel=15;
     t=20;
   }
@@ -59,7 +60,7 @@ class Caminante {
       if ( antesX!=-1 ) {
 
         strokeWeight(5);
-
+        stroke(col);
         line( antesX, antesY, esteX, esteY );
       }
 
@@ -68,5 +69,8 @@ class Caminante {
     } else {
       activo = false;
     }
+  }
+  void asignarColor( color nuevoColor ) {
+    col = nuevoColor;
   }
 }
