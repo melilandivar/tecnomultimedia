@@ -5,32 +5,31 @@ Caminante caminante, caminante2, caminante3, caminante4; //dos caminantes, uno p
 PGraphics textura;
 PImage crayon;
 //--------------------------
-Paleta [] p;
+Paleta p;
 
 boolean b2, b3, b4; //boolean para controlar la segunda figura
 void setup () {
-  size(500, 600);
+  size(400, 600);
   //imagen para extraer paleta de colores//
-  p = new Paleta[3];
-  p[0]= new Paleta ("calidos.png");
-  p[1]= new Paleta ("frios.png");
-  p[2]= new Paleta ("fondo_1.png");
+  p = new Paleta();
+ 
   // inicializa tanto las imagenes de textura como el color que varia dependiendo la paleta
   crayon = loadImage("crayon.png");
   textura = createGraphics(500, 600);
 
   // se dibuja un rect que simula el fondo
   textura.beginDraw();
-  textura.background(p[2].darCalido());
+  textura.background(p.darFondo());
   textura.rect(0, 600, width, height);
   textura.endDraw();
   crayon.mask(textura);
 
   //----------------------------
   image(textura, 0, 0);
+  tint(255, 127);  // Display at half opacity
   image(crayon, 0, 0);
   strokeWeight(7);
-    stroke(p[2].darCalido());
+    stroke(p.darCalido());
   //inicializar objetos
   hacerBezier1(); //aca se hace el primero
 }
@@ -48,6 +47,7 @@ void draw () {
  //   caminante3.asignarColor(p[0].darCalido());
     caminante2.dibujar();
     caminante2.avanzar();
+    caminante2.rebotar();
   }
   if (frameCount>250) {
     if (b3==false) {
@@ -57,6 +57,8 @@ void draw () {
   //  caminante3.asignarColor(p[1].darFrio());
     caminante3.dibujar();
     caminante3.avanzar();
+    caminante3.rebotar();
+    caminante3.cantidadPasos = 80;
   }
   if (frameCount>450) {
     if (b4==false) {

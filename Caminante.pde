@@ -27,11 +27,12 @@ class Caminante {
 
 
   Caminante( Cadena cadena_ ) {
-    p= new Paleta("fondo_1.png");
+    p= new Paleta();
     cadena = cadena_;
     cw = loadImage("textura_linea.png");
     w = createGraphics(500, 600);
-    col= p.darCalido();
+  cw.mask(textura);
+    col= p.darColor();
     vel=15;
     t=20;
   }
@@ -59,7 +60,7 @@ class Caminante {
       //para que no arranque en cualquier lado
       if ( antesX!=-1 ) {
 
-        strokeWeight(5);
+        strokeWeight(7);
         stroke(col);
         line( antesX, antesY, esteX, esteY );
       }
@@ -72,5 +73,27 @@ class Caminante {
   }
   void asignarColor( color nuevoColor ) {
     col = nuevoColor;
+  }
+  void rebotar () {
+
+    // tomo la primer posición y analiza si toca o no los bordes
+    // el valor es el mismo del que toca para que siga la linea recta
+    //vuelve a generar el angulo cuando se forma una nueva curva
+
+    if (antesX >= width) {
+
+      antesX= width;
+    }   //rebote izquierda//
+    if (antesX<=0) {
+      antesX= 0;
+    } 
+    //rebote arriba//
+    if (antesY<=0) {
+      antesY=0;
+    }
+    //rebote abajo//
+    if (antesY>=height) {
+      antesY=600;
+    }
   }
 }

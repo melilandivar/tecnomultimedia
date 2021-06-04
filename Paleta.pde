@@ -1,14 +1,23 @@
 //ARRAY CALIDOS
-color [] calidos = {#f15a19, #c42a2a, #dbbe09};
+color [] colores = {#d25b17, #e7bc4b, #942720,#1e2744, #304e34, #68494f};
+color [] calidos = {#d25b17, #e7bc4b,  #942720};
 //ARRAY FRIOS
-color [] frios = {#275a5e, #617743, #5b505c};
+color [] frios = {#1e2744, #304e34, #68494f};
+
+//PALETA FONDO
+
+color [] fondo = {#c63435, #ec603c, #ffc13c ,#4c6045 ,#264468 , #41415b};
 
 class Paleta {
 
   PImage imagen;
-  Paleta( String nombre ) {
-    imagen = loadImage( nombre );
+  Paleta( ) {
+
   }
+  
+  color darColor() {
+  return colores[int(random(6))];
+}
 
   color darCalido() { //RETORNA UN COLOR AL AZAR DEL ARREGLO
     return calidos[int(random(3))];
@@ -16,6 +25,10 @@ class Paleta {
   color darFrio() { //RETORNA UN COLOR AL AZAR DEL ARREGLO
     return frios[int(random(3))];
   }
+  
+  color darFondo() {
+  return fondo[int(random(6))];
+}
 
   }
   /*color darUnColor() {
